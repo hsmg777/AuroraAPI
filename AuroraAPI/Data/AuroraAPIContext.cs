@@ -17,5 +17,7 @@ namespace AuroraAPI.Data
         public DbSet<AuroraAPI.Models.Fiestas> Fiestas { get; set; } = default!;
 
         public DbSet<AuroraAPI.Models.Reservas>? Reservas { get; set; }
+        public DbSet<AuroraAPI.Models.galeria>? galeria { get; set; }
+
     }
 }

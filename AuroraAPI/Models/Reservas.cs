@@ -6,11 +6,12 @@ namespace AuroraAPI.Models
     {
         [Key]
         public int idReserva { get; set; }
-        public string Nombre { get; set; }
-        public int NumeroPersonas { get; set; }
-        public string Telefono { get; set; }
-        public DateTime Fecha { get; set; }
-        public string HoraLlega { get; set; }
+        public string nombreReserva { get; set; }
+        public string apellidoReserva { get; set; }
+        public string numeroPersonas { get; set; }
+        public string hora { get; set; }
+        public string telefono { get; set; }
+
 
     }
 }

@@ -8,59 +8,60 @@ using Microsoft.EntityFrameworkCore;
 using AuroraAPI.Data;
 using AuroraAPI.Models;
 
+
 namespace AuroraAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FiestasController : ControllerBase
+    public class galeriaController : ControllerBase
     {
         private readonly AuroraAPIContext _context;
 
-        public FiestasController(AuroraAPIContext context)
+        public galeriaController(AuroraAPIContext context)
         {
             _context = context;
         }
 
         // GET: api/Fiestas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Fiestas>>>GetFiestas()
+        public async Task<ActionResult<IEnumerable<galeria>>>GetGaleria()
         {
           if (_context.Fiestas == null)
           {
               return NotFound();
           }
-            return await _context.Fiestas.ToListAsync();
+            return await _context.galeria.ToListAsync();
         }
 
         // GET: api/Fiestas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Fiestas>> GetFiestas(int id)
+        public async Task<ActionResult<galeria>> GetGaleria(int id)
         {
-          if (_context.Fiestas == null)
+          if (_context.galeria == null)
           {
               return NotFound();
           }
-            var fiestas = await _context.Fiestas.FindAsync(id);
+            var galeria = await _context.galeria.FindAsync(id);
 
-            if (fiestas == null)
+            if (galeria == null)
             {
                 return NotFound();
             }
 
-            return fiestas;
+            return galeria;
         }
 
         // PUT: api/Fiestas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiestas(int id, Fiestas fiestas)
+        public async Task<IActionResult> PutGaleria(int id, galeria galeria)
         {
-            if (id != fiestas.idFiesta)
+            if (id != galeria.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(fiestas).State = EntityState.Modified;
+            _context.Entry(galeria).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +69,7 @@ namespace AuroraAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FiestasExists(id))
+                if (!GaleriaExists(id))
                 {
                     return NotFound();
                 }
@@ -84,41 +85,41 @@ namespace AuroraAPI.Controllers
         // POST: api/Fiestas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Fiestas>> PostFiestas(Fiestas fiestas)
+        public async Task<ActionResult<galeria>> PostGaleria(galeria galeria)
         {
-          if (_context.Fiestas == null)
+          if (_context.galeria == null)
           {
-              return Problem("Entity set 'AuroraAPIContext.Fiestas'  is null.");
+              return Problem("Entity set 'AuroraAPIContext.galeria'  is null.");
           }
-            _context.Fiestas.Add(fiestas);
+            _context.galeria.Add(galeria);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFiestas", new { id = fiestas.idFiesta }, fiestas);
+            return CreatedAtAction("GetGaleria", new { id = galeria.Id }, galeria);
         }
 
         // DELETE: api/Fiestas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFiestas(int id)
+        public async Task<IActionResult> DeleteGaleria(int id)
         {
-            if (_context.Fiestas == null)
+            if (_context.galeria == null)
             {
                 return NotFound();
             }
-            var fiestas = await _context.Fiestas.FindAsync(id);
-            if (fiestas == null)
+            var galeria = await _context.galeria.FindAsync(id);
+            if (galeria == null)
             {
                 return NotFound();
             }
 
-            _context.Fiestas.Remove(fiestas);
+            _context.galeria.Remove(galeria);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool FiestasExists(int id)
+        private bool GaleriaExists(int id)
         {
-            return (_context.Fiestas?.Any(e => e.idFiesta == id)).GetValueOrDefault();
+            return (_context.galeria?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
