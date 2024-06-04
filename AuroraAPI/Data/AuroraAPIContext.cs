@@ -9,15 +9,23 @@ namespace AuroraAPI.Data
 {
     public class AuroraAPIContext : DbContext
     {
-        public AuroraAPIContext (DbContextOptions<AuroraAPIContext> options)
+        public AuroraAPIContext(DbContextOptions<AuroraAPIContext> options)
             : base(options)
         {
         }
 
-        public DbSet<AuroraAPI.Models.Fiestas> Fiestas { get; set; } = default!;
+        public DbSet<Fiestas> Fiestas { get; set; } = default!;
+        public DbSet<Reservas>? Reservas { get; set; }
+        public DbSet<galeria>? galeria { get; set; }
+        public DbSet<about>? aboutUs { get; set; }
+        public DbSet<contact>? contact { get; set; }
 
-        public DbSet<AuroraAPI.Models.Reservas>? Reservas { get; set; }
-        public DbSet<AuroraAPI.Models.galeria>? galeria { get; set; }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<about>().ToTable("about");
+            modelBuilder.Entity<politicas>().ToTable("politicas");
+        }
+        public DbSet<politicas>? politicas { get; set; }
+    
     }
 }

@@ -7,6 +7,7 @@ namespace AuroraAPI.Models
         [Key]
         public int idReserva { get; set; }
         public int idFiesta { get; set; }
+        public string vaucher { get; set; }
         public string nombreReserva { get; set; }
         public string apellidoReserva { get; set; }
         public string numeroPersonas { get; set; }
